@@ -66,7 +66,7 @@ function animate()
 	player.y += Math.round(player.vy);
 	
 
-	while(platform0.hitTestPoint(player.bottom()) && player.vy >=0)
+	while(platform0.hitTestPoint({ x: player.x - player.width / 2, y: player.y + player.height / 2}) && player.vy >=0)
 	{
 		player.y--;
 		player.vy = 0;
@@ -83,7 +83,7 @@ function animate()
 		player.vx = 0;
 	}
 	
-	while(platform1.hitTestPoint(player.bottom()) && player.vy >=0)
+	while(platform1.hitTestPoint({ x: player.x - player.width / 2, y: player.y + player.height / 2}) && player.vy >=0)
 	{
 		player.y--;
 		player.vy = 0;
@@ -119,7 +119,7 @@ function animate()
 		player.canJump = true;
 	}
 	
-	while(platform1.hitTestPoint({x:player.x, y:player.y}) && player.vy >=0)
+	while(platform1.hitTestPoint({x:player.x, y:player.y}) && player.vy >=0 && player.vy <= 0)
 	{
 		player.y--;
 		player.vy = 0;
@@ -131,7 +131,8 @@ function animate()
 		goal.y = 100000;
 	}
 
-	
+	player.drawDebug();
+
 	platform0.drawRect();
 	platform1.drawRect();
 
